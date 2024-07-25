@@ -1,7 +1,7 @@
 import { relations } from 'drizzle-orm';
 import { integer, text, pgTableCreator, timestamp } from 'drizzle-orm/pg-core';
 
-const pgTable = pgTableCreator((name) => `sandyq_${name}`);
+const pgTable = pgTableCreator((name) => `marketplace_${name}`);
 
 export const user = pgTable('user', {
   id: text('id').primaryKey(),
