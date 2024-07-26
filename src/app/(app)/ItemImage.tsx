@@ -95,6 +95,9 @@ export const ItemImage = ({ item }: ItemImageProps) => {
             })}
           />
           <div className="flex mt-1 items-center gap-2">
+            <Button variant="outline" onClick={() => setIsModalOpen(false)}>
+              Cancel
+            </Button>
             <Button loading={isPending} onClick={onClaimItem}>
               Claim
             </Button>
