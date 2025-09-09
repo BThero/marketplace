@@ -9,12 +9,13 @@ import { revalidatePath } from 'next/cache';
 
 const schema = z.object({
   id: z.number(),
+  note: z.string(),
 });
 
 export const claimItem = createServerAction()
   .input(schema)
   .handler(async ({ input }) => {
-    const { id } = input;
+    const { id, note } = input;
     await db.transaction(async (tx) => {
       const item = await tx.query.item.findFirst({
         where(fields, operators) {
@@ -28,6 +29,7 @@ export const claimItem = createServerAction()
         .update(itemTable)
         .set({
           isClaimed: true,
+          note: note,
         })
         .where(eq(itemTable.id, id));
     });

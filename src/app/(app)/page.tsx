@@ -14,11 +14,15 @@ const populateItems = async () => {
   await db.delete(itemTable);
 
   for (const file of files) {
-    assert(file.endsWith('.jpg'), 'All items should be in .jpg format');
+    assert(
+      file.endsWith('.jpg') || file.endsWith('.jpeg'),
+      'All items should be in .jpg format'
+    );
+    const extLength = file.endsWith('.jpg') ? 4 : 5;
     await db.insert(itemTable).values({
       imageUrl: `/items/${file}`,
       title: capitalize(
-        file.substring(0, file.length - 4).replaceAll('_', ' ')
+        file.substring(0, file.length - extLength).replaceAll('_', ' ')
       ),
     });
   }
@@ -29,7 +33,6 @@ export const metadata: Metadata = {
 };
 
 const Home = async () => {
-  // await populateItems();
   const items = await db.query.item.findMany({
     orderBy: [itemTable.id],
   });
@@ -39,7 +42,6 @@ const Home = async () => {
         <h1 className="typography-h1">Tim&apos;s Marketplace</h1>
         <ul className="list-disc list-inside typography-list">
           <li>All items are free</li>
-          <li>Reach out to me before August 1st if you claim anything</li>
         </ul>
       </header>
       <div className="grid grid-cols-3 gap-4 w-[1000px] max-sm:grid-cols-1 max-sm:w-full max-lg:grid-cols-2 max-lg:w-full">

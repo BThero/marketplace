@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useId, useState } from 'react';
 import { item as itemTable } from '../../db/schema';
 import {
   Dialog,
@@ -17,12 +17,15 @@ import { Button } from '../_components/ui/button';
 import { useServerAction } from 'zsa-react';
 import { claimItem } from './actions';
 import { toast } from 'sonner';
+import { Label } from '../_components/ui/label';
+import { Input } from '../_components/ui/input';
 
 const messages = {
   claimed: 'This item has already been claimed',
   probablyClaimed:
     'Seems like this item has already been claimed. Please refresh to verify',
-  success: "Item successfully claimed! Don't forget to text me and let me know",
+  noteMissing: 'Please fill in the note',
+  success: 'Item successfully claimed!',
 };
 
 type ItemImageProps = {
@@ -32,6 +35,8 @@ export const ItemImage = ({ item }: ItemImageProps) => {
   const { execute, isPending } = useServerAction(claimItem);
   const isClaimed = item.isClaimed;
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [note, setNote] = useState('');
+  const inputId = useId();
 
   const changeModalIfNotClaimed = (value: boolean) => {
     if (isClaimed) {
@@ -46,8 +51,13 @@ export const ItemImage = ({ item }: ItemImageProps) => {
       toast.error(messages.claimed);
       return;
     }
+    if (!note.trim().length) {
+      toast.error(messages.noteMissing);
+      return;
+    }
     const [, err] = await execute({
       id: item.id,
+      note: note.trim(),
     });
     if (err) {
       toast.error(messages.probablyClaimed, {
@@ -94,6 +104,21 @@ export const ItemImage = ({ item }: ItemImageProps) => {
               'opacity-50': isClaimed,
             })}
           />
+          <div className="flex mt-1 flex-col gap-2">
+            <Label htmlFor={inputId} className="flex-shrink-0">
+              Your note to Tim<span className="text-red-500">*</span> (Please
+              include your name)
+            </Label>
+            <Input
+              id={inputId}
+              type="text"
+              value={note}
+              onChange={(e) => {
+                e.preventDefault();
+                setNote(e.target.value);
+              }}
+            />
+          </div>
           <div className="flex mt-1 items-center gap-2">
             <Button variant="outline" onClick={() => setIsModalOpen(false)}>
               Cancel

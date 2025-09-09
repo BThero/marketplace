@@ -5,5 +5,6 @@ export const item = table('item', {
   imageUrl: text('image_url').notNull().unique(),
   title: text('title').notNull(),
   description: text('description'),
+  note: text('note'),
   isClaimed: boolean('is_claimed').notNull().default(false),
 });
