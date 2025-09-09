@@ -79,6 +79,7 @@ export const ItemImage = ({ item }: ItemImageProps) => {
           width={200}
           height="0"
           alt={item.title}
+          priority={false}
           className={cn(
             'w-full h-auto hover:outline-4 hover:outline-dotted hover:outline-gray-500 cursor-pointer',
             {
