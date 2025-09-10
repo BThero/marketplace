@@ -106,6 +106,9 @@ export const ItemImage = ({ item }: ItemImageProps) => {
             })}
           />
           <div className="flex mt-1 flex-col gap-2">
+            <div className="max-w-0 max-h-0 overflow-hidden">
+              <input type="text" autoFocus={true} name="hidden" />
+            </div>
             <Label htmlFor={inputId} className="flex-shrink-0">
               Your note to Tim<span className="text-red-500">*</span> (Please
               include your name)
