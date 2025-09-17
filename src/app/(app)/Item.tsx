@@ -10,9 +10,11 @@ export const Item = ({ item }: ItemProps) => {
   return (
     <div>
       <header className="flex gap-2 items-baseline">
-        <h2 className="typography-h2">{item.title}</h2>
+        <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+          {item.title}
+        </h2>
         <span
-          className={cn('typography-p text-red-500', {
+          className={cn('leading-7 [&:not(:first-child)]:mt-6 text-red-500', {
             'text-green-500': !isClaimed,
           })}
         >

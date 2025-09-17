@@ -42,8 +42,10 @@ const Home = async () => {
   return (
     <main className="flex-1 w-full flex flex-col items-center gap-4 p-2">
       <header>
-        <h1 className="typography-h1">Tim&apos;s Marketplace</h1>
-        <ul className="list-disc list-inside typography-list">
+        <h1 className="scroll-m-20 text-center text-4xl font-extrabold tracking-tight text-balance">
+          Tim&apos;s Marketplace
+        </h1>
+        <ul className="list-inside my-6 ml-6 list-disc [&>li]:mt-2">
           <li>All items are free</li>
         </ul>
       </header>

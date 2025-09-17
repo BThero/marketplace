@@ -127,10 +127,10 @@ export const ItemImage = ({ item }: ItemImageProps) => {
             <Button variant="outline" onClick={() => setIsModalOpen(false)}>
               Cancel
             </Button>
-            <Button loading={isPending} onClick={onClaimItem}>
+            <Button disabled={isPending} onClick={onClaimItem}>
               Claim
             </Button>
-            <span className="text-gray-500 typography-muted">
+            <span className="text-muted-foreground text-sm">
               Completely anonymous
             </span>
           </div>
