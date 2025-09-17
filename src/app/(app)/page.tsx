@@ -35,6 +35,9 @@ export const metadata: Metadata = {
 const Home = async () => {
   const items = await db.query.item.findMany({
     orderBy: [itemTable.title],
+    where: (fields, operators) => {
+      return operators.eq(fields.isClaimed, false);
+    },
   });
   return (
     <main className="flex-1 w-full flex flex-col items-center gap-4 p-2">
