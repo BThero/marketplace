@@ -4,14 +4,19 @@ import { Fragment, type FC } from 'hono/jsx';
 export const ClaimForm: FC<{ item: Item }> = ({ item }) => {
   return (
     <Fragment>
-      <header class="container">
-        <hgroup>
-          <h1>Claim Item</h1>
-          <p>{item.title}</p>
-        </hgroup>
+      <header class="container narrow">
+        <header>
+          <hgroup>
+            <h1>Claim Item</h1>
+            <p>{item.title}</p>
+          </hgroup>
+        </header>
+        <div>
+          <img src={'/public' + item.imageUrl} height={0} alt={item.title} />
+        </div>
       </header>
 
-      <main class="container">
+      <main class="container narrow">
         <form action="/claim-action" method="post">
           <label for="note">Your note for Tim</label>
           <input

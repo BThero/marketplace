@@ -1,6 +1,7 @@
-import type { FC } from 'hono/jsx';
+import type { Toast } from '@/lib/toasts.js';
+import type { Child, FC } from 'hono/jsx';
 
-export const Layout: FC = (props) => {
+export const Layout: FC<{ toast?: Toast; children: Child }> = (props) => {
   return (
     <html lang="en">
       <head>
@@ -14,7 +15,15 @@ export const Layout: FC = (props) => {
         <link rel="stylesheet" href="/public/pico.sand.min.css" />
         <link rel="stylesheet" href="/public/overrides.css" />
       </head>
-      <body>{props.children}</body>
+      <body>
+        {props.children}
+        {props.toast ? (
+          <article class={`toast ${props.toast.type}`}>
+            {props.toast.text}
+          </article>
+        ) : null}
+        <script src="/public/toast.js" defer />
+      </body>
     </html>
   );
 };

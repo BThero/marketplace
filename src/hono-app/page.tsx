@@ -20,7 +20,7 @@ export const Home: FC<{ items: Items }> = ({ items }) => {
       <header class="container">
         <hgroup>
           <h1>Tim&apos;s Marketplace</h1>
-          <p>Claim any item you like, for free</p>
+          <p>Claim any item you like. For free. Anonymously</p>
         </hgroup>
       </header>
 

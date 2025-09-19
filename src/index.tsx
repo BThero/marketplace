@@ -1,6 +1,6 @@
 import { serve } from '@hono/node-server';
 import { serveStatic } from '@hono/node-server/serve-static';
-import { Hono } from 'hono';
+import { Hono, type Context } from 'hono';
 import { Home } from './hono-app/page.js';
 import { getItems } from './lib/getItems.js';
 import { Layout } from './hono-app/layout.js';
@@ -8,13 +8,26 @@ import { getItem } from './lib/getItem.js';
 import { ClaimForm } from './hono-app/claim-form.js';
 import { validator } from 'hono/validator';
 import { claimItem } from './lib/claimItem.js';
+import { toasts, type Toast, type ToastKind } from './lib/toasts.js';
+
+const appendToast = (url: string, kind: ToastKind) => {
+  return `${url}?toast=${kind}`;
+};
+
+const getToast = (c: Context): Toast | undefined => {
+  const toastKind = c.req.query('toast');
+  if (!toastKind) return undefined;
+  const toast = toasts[toastKind as ToastKind];
+  return toast ?? undefined;
+};
 
 const app = new Hono();
 
 app.get('/', async (c) => {
   const items = await getItems();
+  const toast = getToast(c);
   return c.html(
-    <Layout>
+    <Layout toast={toast}>
       <Home items={items} />
     </Layout>
   );
@@ -34,8 +47,9 @@ app.get('/claim/:id', async (c) => {
     return c.notFound();
   }
 
+  const toast = getToast(c);
   return c.html(
-    <Layout>
+    <Layout toast={toast}>
       <ClaimForm item={item} />
     </Layout>
   );
@@ -48,17 +62,21 @@ app.post(
     const note = value['note'];
 
     if (typeof item !== 'string' || !item.trim().length) {
-      return c.redirect('/');
-    }
-
-    if (typeof note !== 'string' || !note.trim().length) {
-      return c.redirect('/');
+      return c.redirect(appendToast('/', 'invalid_item_id'));
     }
 
     const itemId = Number(item);
 
     if (!Number.isSafeInteger(itemId)) {
       return c.redirect('/');
+    }
+
+    if (typeof note !== 'string') {
+      return c.redirect(appendToast(`/claim/${itemId}`, 'invalid_note'));
+    }
+
+    if (!note.trim().length) {
+      return c.redirect(appendToast(`/claim/${itemId}`, 'empty_note'));
     }
 
     return {
@@ -69,7 +87,9 @@ app.post(
   async (c) => {
     const { id, note } = c.req.valid('form');
     const updated = await claimItem(id, note);
-    return c.redirect('/');
+    return c.redirect(
+      appendToast('/', updated ? 'claim_success' : 'claim_failure')
+    );
   }
 );
 
