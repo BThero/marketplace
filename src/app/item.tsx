@@ -8,7 +8,7 @@ export const Item: FC<{ item: Items[number] }> = ({ item }) => {
         <h2>{item.title}</h2>
       </header>
       <div>
-        <img src={'/public' + item.imageUrl} height={0} alt={item.title} />
+        <img src={'/public' + item.minUrl} height={0} alt={item.title} />
       </div>
       <footer>
         <div role="group">

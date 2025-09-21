@@ -1,11 +1,11 @@
 import { serve } from '@hono/node-server';
 import { serveStatic } from '@hono/node-server/serve-static';
 import { Hono, type Context } from 'hono';
-import { Home } from './hono-app/page.js';
+import { Home } from './app/page.js';
 import { getItems } from './lib/getItems.js';
-import { Layout } from './hono-app/layout.js';
+import { Layout } from './app/layout.js';
 import { getItem } from './lib/getItem.js';
-import { ClaimForm } from './hono-app/claim-form.js';
+import { ClaimForm } from './app/claim-form.js';
 import { validator } from 'hono/validator';
 import { claimItem } from './lib/claimItem.js';
 import { toasts, type Toast, type ToastKind } from './lib/toasts.js';

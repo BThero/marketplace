@@ -12,7 +12,7 @@ export const ClaimForm: FC<{ item: Item }> = ({ item }) => {
           </hgroup>
         </header>
         <div>
-          <img src={'/public' + item.imageUrl} height={0} alt={item.title} />
+          <img src={'/public' + item.maxUrl} height={0} alt={item.title} />
         </div>
       </header>
 
