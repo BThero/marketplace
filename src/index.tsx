@@ -1,25 +1,14 @@
 import { serve } from '@hono/node-server';
 import { serveStatic } from '@hono/node-server/serve-static';
-import { Hono, type Context } from 'hono';
+import { Hono } from 'hono';
 import { Home } from './app/page.js';
-import { getItems } from './lib/getItems.js';
+import { getItems } from './lib/get-items.js';
 import { Layout } from './app/layout.js';
-import { getItem } from './lib/getItem.js';
+import { getItem } from './lib/get-item.js';
 import { ClaimForm } from './app/claim-form.js';
 import { validator } from 'hono/validator';
-import { claimItem } from './lib/claimItem.js';
-import { toasts, type Toast, type ToastKind } from './lib/toasts.js';
-
-const appendToast = (url: string, kind: ToastKind) => {
-  return `${url}?toast=${kind}`;
-};
-
-const getToast = (c: Context): Toast | undefined => {
-  const toastKind = c.req.query('toast');
-  if (!toastKind) return undefined;
-  const toast = toasts[toastKind as ToastKind];
-  return toast ?? undefined;
-};
+import { claimItem } from './lib/claim-item.js';
+import { appendToast, getToast } from './lib/toasts.js';
 
 const app = new Hono();
 
@@ -109,6 +98,7 @@ process.on('SIGINT', () => {
   server.close();
   process.exit(0);
 });
+
 process.on('SIGTERM', () => {
   server.close((err) => {
     if (err) {

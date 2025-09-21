@@ -11,9 +11,6 @@ importers:
       '@hono/node-server':
         specifier: 1.19.3
         version: 1.19.3(hono@4.9.8)
-      dotenv:
-        specifier: 17.2.2
-        version: 17.2.2
       drizzle-orm:
         specifier: 0.44.5
         version: 0.44.5(@types/pg@8.15.5)(pg@8.16.3)
@@ -23,9 +20,6 @@ importers:
       pg:
         specifier: 8.16.3
         version: 8.16.3
-      zod:
-        specifier: 4.1.9
-        version: 4.1.9
     devDependencies:
       '@types/node':
         specifier: 22.18.6
@@ -37,8 +31,8 @@ importers:
         specifier: 0.31.4
         version: 0.31.4
       prettier:
-        specifier: 3.5.3
-        version: 3.5.3
+        specifier: 3.6.2
+        version: 3.6.2
       sharp:
         specifier: 0.34.4
         version: 0.34.4
@@ -550,10 +544,6 @@ packages:
     resolution: {integrity: sha512-WkrWp9GR4KXfKGYzOLmTuGVi1UWFfws377n9cc55/tb6DuqyF6pcQ5AbiHEshaDpY9v6oaSr2XCDidGmMwdzIA==}
     engines: {node: '>=8'}
 
-  dotenv@17.2.2:
-    resolution: {integrity: sha512-Sf2LSQP+bOlhKWWyhFsn0UsfdK/kCWRv1iuA2gXAwt3dyNabr6QSj00I2V10pidqz69soatm9ZwZvpQMTIOd5Q==}
-    engines: {node: '>=12'}
-
   drizzle-kit@0.31.4:
     resolution: {integrity: sha512-tCPWVZWZqWVx2XUsVpJRnH9Mx0ClVOf5YUHerZ5so1OKSlqww4zy1R5ksEdGRcO3tM3zj0PYN6V48TbQCL1RfA==}
     hasBin: true
@@ -797,8 +787,8 @@ packages:
     resolution: {integrity: sha512-9ZhXKM/rw350N1ovuWHbGxnGh/SNJ4cnxHiM0rxE4VN41wsg8P8zWn9hv/buK00RP4WvlOyr/RBDiptyxVbkZQ==}
     engines: {node: '>=0.10.0'}
 
-  prettier@3.5.3:
-    resolution: {integrity: sha512-QQtaxnoDJeAkDvDKWCLiwIXkTgRhwYDEQCghU9Z6q03iyek/rxRh/2lC3HB7P8sWT2xC/y5JDctPLBIGzHKbhw==}
+  prettier@3.6.2:
+    resolution: {integrity: sha512-I7AIg5boAr5R0FFtJ6rCfD+LFsWHp81dolrFD8S79U9tb8Az2nGrJncnMSnys+bpQJfRUzqs9hnA81OAA3hCuQ==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -875,9 +865,6 @@ packages:
   xtend@4.0.2:
     resolution: {integrity: sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==}
     engines: {node: '>=0.4'}
-
-  zod@4.1.9:
-    resolution: {integrity: sha512-HI32jTq0AUAC125z30E8bQNz0RQ+9Uc+4J7V97gLYjZVKRjeydPgGt6dvQzFrav7MYOUGFqqOGiHpA/fdbd0cQ==}
 
 snapshots:
 
@@ -1195,8 +1182,6 @@ snapshots:
     dependencies:
       path-type: 4.0.0
 
-  dotenv@17.2.2: {}
-
   drizzle-kit@0.31.4:
     dependencies:
       '@drizzle-team/brocli': 0.10.2
@@ -1390,7 +1375,7 @@ snapshots:
     dependencies:
       xtend: 4.0.2
 
-  prettier@3.5.3: {}
+  prettier@3.6.2: {}
 
   queue-lit@1.5.2: {}
 
@@ -1479,5 +1464,3 @@ snapshots:
   undici-types@6.21.0: {}
 
   xtend@4.0.2: {}
-
-  zod@4.1.9: {}

@@ -1,4 +1,4 @@
-import type { Items } from '@/lib/getItems.js';
+import type { Items } from '@/lib/get-items.js';
 import { Fragment, type FC } from 'hono/jsx';
 import { Item } from './item.js';
 
@@ -19,6 +19,10 @@ export const Home: FC<{ items: Items }> = ({ items }) => {
           ))}
         </div>
       </main>
+
+      <footer class="container">
+        <p>Built by Temirlan Baibolov</p>
+      </footer>
     </Fragment>
   );
 };

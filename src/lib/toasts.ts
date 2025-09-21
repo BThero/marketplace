@@ -1,3 +1,5 @@
+import type { Context } from 'hono';
+
 export type Toast = {
   text: string;
   type: 'error' | 'success';
@@ -35,3 +37,14 @@ export const toasts: Record<ToastKind, Toast> = {
     type: 'success',
   },
 } as const;
+
+export const appendToast = (url: string, kind: ToastKind) => {
+  return `${url}?toast=${kind}`;
+};
+
+export const getToast = (c: Context): Toast | undefined => {
+  const toastKind = c.req.query('toast');
+  if (!toastKind) return undefined;
+  const toast = toasts[toastKind as ToastKind];
+  return toast ?? undefined;
+};

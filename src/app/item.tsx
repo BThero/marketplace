@@ -1,8 +1,8 @@
-import type { Items } from '@/lib/getItems.js';
+import type { Item as ItemType } from '@/lib/get-items.js';
 import { resolveMinUrl } from '@/lib/resolve-url.js';
 import { type FC } from 'hono/jsx';
 
-export const Item: FC<{ item: Items[number] }> = ({ item }) => {
+export const Item: FC<{ item: ItemType }> = ({ item }) => {
   return (
     <article>
       <header>

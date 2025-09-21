@@ -1,7 +1,10 @@
 import type { Toast } from '@/lib/toasts.js';
 import type { Child, FC } from 'hono/jsx';
 
-export const Layout: FC<{ toast?: Toast; children: Child }> = (props) => {
+export const Layout: FC<{ toast?: Toast; children: Child }> = ({
+  toast,
+  children,
+}) => {
   return (
     <html lang="en">
       <head>
@@ -19,11 +22,9 @@ export const Layout: FC<{ toast?: Toast; children: Child }> = (props) => {
         <link rel="stylesheet" href="/public/overrides.css" />
       </head>
       <body>
-        {props.children}
-        {props.toast ? (
-          <article class={`toast ${props.toast.type}`}>
-            {props.toast.text}
-          </article>
+        {children}
+        {toast ? (
+          <article class={`toast ${toast.type}`}>{toast.text}</article>
         ) : null}
         <script src="/public/toast.js" defer />
       </body>

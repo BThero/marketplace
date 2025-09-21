@@ -12,3 +12,4 @@ export const getItems = async () => {
 };
 
 export type Items = Awaited<ReturnType<typeof getItems>>;
+export type Item = Items[number];

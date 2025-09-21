@@ -1,4 +1,3 @@
-// /image/{name} to /image/min/{name}
 export const resolveMinUrl = (url: string) => {
   const segments = url.split('/');
   const name = segments.at(-1)!;

@@ -1,4 +1,4 @@
-import type { Item } from '@/lib/getItem.js';
+import type { Item } from '@/lib/get-item.js';
 import { resolveMaxUrl } from '@/lib/resolve-url.js';
 import { Fragment, type FC } from 'hono/jsx';
 
