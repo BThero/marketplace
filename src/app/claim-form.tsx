@@ -1,4 +1,5 @@
 import type { Item } from '@/lib/getItem.js';
+import { resolveMaxUrl } from '@/lib/resolve-url.js';
 import { Fragment, type FC } from 'hono/jsx';
 
 export const ClaimForm: FC<{ item: Item }> = ({ item }) => {
@@ -12,7 +13,7 @@ export const ClaimForm: FC<{ item: Item }> = ({ item }) => {
           </hgroup>
         </header>
         <div>
-          <img src={'/public' + item.maxUrl} height={0} alt={item.title} />
+          <img src={resolveMaxUrl(item.imageUrl)} height={0} alt={item.title} />
         </div>
       </header>
 

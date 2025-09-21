@@ -1,4 +1,5 @@
 import type { Items } from '@/lib/getItems.js';
+import { resolveMinUrl } from '@/lib/resolve-url.js';
 import { type FC } from 'hono/jsx';
 
 export const Item: FC<{ item: Items[number] }> = ({ item }) => {
@@ -8,7 +9,7 @@ export const Item: FC<{ item: Items[number] }> = ({ item }) => {
         <h2>{item.title}</h2>
       </header>
       <div>
-        <img src={'/public' + item.minUrl} height={0} alt={item.title} />
+        <img src={resolveMinUrl(item.imageUrl)} height={0} alt={item.title} />
       </div>
       <footer>
         <div role="group">

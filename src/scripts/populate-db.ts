@@ -30,12 +30,11 @@ const collectImages = () => {
 const populateDB = async () => {
   const images = collectImages();
   for (const name of images) {
-    const minUrl = `/items/min/${name}`;
-    const maxUrl = `/items/max/${name}`;
+    const imageUrl = `/items/${name}`;
     const nameWithoutExtension = name.split('.').slice(0, -1).join('.');
     const title = capitalize(nameWithoutExtension);
     console.log(`inserting image ${name} with title ${title}...`);
-    await db.insert(item).values({ minUrl, maxUrl, title });
+    await db.insert(item).values({ imageUrl, title });
   }
   console.log('done!');
 };
