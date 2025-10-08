@@ -1,0 +1,36 @@
+article {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.grid-three-cols {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0%, 1fr));
+  }
+}
+
+.toast {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+}
+
+.toast.error {
+  background-color: #d93526;
+}
+
+.toast.success {
+  background-color: #00895a;
+}
+
+.toast.hide {
+  display: none;
+}
+
+.container.narrow {
+  max-width: 700px;
+}
